@@ -1,0 +1,12 @@
+#container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.square {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: blue;
+}
