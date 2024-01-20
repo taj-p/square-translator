@@ -4,8 +4,11 @@ import App from "./App";
 import { vanillaImpl } from "./vanilla_impl";
 import { SQUARES_TO_RENDER } from "./constants";
 
+const queryParams = new URLSearchParams(window.location.search);
+const useReact = queryParams.get("react") === "true";
+
 const startTime = performance.now();
-if (window.location.pathname.includes("react")) {
+if (useReact) {
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
