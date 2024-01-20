@@ -19,6 +19,8 @@ if (window.location.pathname.includes("react")) {
 
 // Basic performance stats...
 
+const squaresRenderedElement = document.getElementById("squaresRendered");
+squaresRenderedElement.textContent = `Squares Rendered: ${SQUARES_TO_RENDER}`;
 const renderTimeElement = document.getElementById("renderTime");
 const fpsElement = document.getElementById("fps");
 
@@ -35,13 +37,13 @@ function updateFPS() {
   const currentFPS = 1000 / deltaTime;
 
   // Apply decaying average
-  if (averageFPS === 0) {
+  if (averageFPS <= 0 || averageFPS === Infinity) {
     averageFPS = currentFPS;
   } else {
     averageFPS = decay * averageFPS + (1 - decay) * currentFPS;
   }
 
-  fpsElement.textContent = `FPS: ${Math.round(averageFPS)}`;
+  fpsElement.textContent = `FPS: ${Math.round(averageFPS)} `;
   frameRequest = requestAnimationFrame(updateFPS);
 }
 
