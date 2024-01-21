@@ -54,7 +54,7 @@ const App = () => {
     node.addEventListener("mousedown", handleMouseDown);
     node.addEventListener("mousemove", handleMouseMove);
     node.addEventListener("mouseup", handleMouseUp);
-  }, [ref.current]);
+  }, [ref]);
 
   return (
     <div id="container" ref={ref}>
