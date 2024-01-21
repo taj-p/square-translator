@@ -53,10 +53,13 @@ export function setupPerformanceStats(startTime, squares) {
 
   const renderTimeElement = document.getElementById("renderTime");
   const fpsElement = document.getElementById("fps");
+  const memoryElement = document.getElementById("memory");
 
   let lastFrameTime = Date.now();
   let averageFPS = 0;
   const decay = 0.9; // You can adjust this value for more or less smoothing
+
+  let lastMemoryUpdate = Date.now();
 
   function updateFPS() {
     const now = Date.now();
@@ -73,6 +76,16 @@ export function setupPerformanceStats(startTime, squares) {
     }
 
     fpsElement.textContent = `FPS: ${Math.round(averageFPS)} `;
+
+    if (now - lastMemoryUpdate > 1000) {
+      const memory = performance.memory;
+      const memoryUsed = memory.usedJSHeapSize / 1000000;
+
+      memoryElement.textContent = `Memory: ${memoryUsed.toFixed(2)} MB`;
+
+      lastMemoryUpdate = now;
+    }
+
     requestAnimationFrame(updateFPS);
   }
 
