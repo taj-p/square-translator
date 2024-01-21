@@ -7,23 +7,23 @@ import { SQUARES_TO_RENDER } from "./constants";
 
 const queryParams = new URLSearchParams(window.location.search);
 const useReact = queryParams.get("react") === "true";
-const useReconciliation = queryParams.get("reconciliation") === "true";
+const skipReconciliation = queryParams.get("skipreconciliation") === "true";
 
 const startTime = performance.now();
 if (useReact) {
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  if (useReconciliation) {
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>,
-    );
-  } else {
+  if (skipReconciliation) {
     root.render(
       <React.StrictMode>
         <AppWithoutReconciliation />
       </React.StrictMode>,
       document.getElementById("root"),
+    );
+  } else {
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>,
     );
   }
 } else {
@@ -38,9 +38,9 @@ squaresRenderedElement.textContent = `Squares Rendered: ${SQUARES_TO_RENDER}`;
 const typeElement = document.getElementById("type");
 typeElement.textContent = `Type: ${
   useReact
-    ? useReconciliation
-      ? "React w/ Reconciliation"
-      : "React skip reconciliation"
+    ? skipReconciliation
+      ? "React skip reconciliation"
+      : "React w/ Reconciliation"
     : "Vanilla"
 }`;
 
