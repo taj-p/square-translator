@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { SQUARES_TO_RENDER } from "./constants";
+import { SQUARES_TO_RENDER } from "./index";
 import Square from "./Square";
 
 const App = () => {
