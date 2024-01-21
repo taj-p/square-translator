@@ -1,5 +1,7 @@
 # Square Renderer WebApp
 
+See: https://taj-p.github.io/square-translator/?squares=50000
+
 ## Overview
 
 This web application dynamically renders squares on the page and allows the user to modify
